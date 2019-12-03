@@ -2,12 +2,13 @@ package com.example.chucknorris
 
 interface ChuckNorrisRepository {
 
-	fun getCategory(): List<String>
+    suspend fun getCategory(): List<String>
 }
 
-class ChuckNorrisRepositoryImpl(private val chuckNorrisApi: ChuckNorrisApi): ChuckNorrisRepository {
-	override fun getCategory(): List<String> {
-		return chuckNorrisApi.getCategories()
-	}
+class ChuckNorrisRepositoryImpl(private val chuckNorrisApi: ChuckNorrisApi) :
+    ChuckNorrisRepository {
+    override suspend fun getCategory(): List<String> {
+        return chuckNorrisApi.getCategories()
+    }
 
 }

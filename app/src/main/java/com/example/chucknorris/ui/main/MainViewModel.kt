@@ -1,37 +1,29 @@
 package com.example.chucknorris.ui.main
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.chucknorris.ChuckNorrisRepository
-import org.koin.core.KoinComponent
-import org.koin.core.inject
+import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel(), KoinComponent {
+class MainViewModel(private val chuckNorrisRepository: ChuckNorrisRepository) : ViewModel() {
 
-	private val chuckNorrisRepository: ChuckNorrisRepository by inject()
+    private val _categories = MutableLiveData<List<String>>()
+    val categories: LiveData<List<String>> = _categories
 
-	private val _categories = MutableLiveData<List<String>>()
-	val categories: LiveData<List<String>> = _categories
+    init {
+        getCategories()
+    }
 
-	init {
-		_categories.value = listOf(
-			"animal",
-			"career",
-			"celebrity",
-			"dev",
-			"explicit",
-			"fashion",
-			"food",
-			"history",
-			"money",
-			"movie",
-			"music",
-			"political",
-			"religion",
-			"science",
-			"sport",
-			"travel"
-		)
-	}
+    private fun getCategories() {
+        viewModelScope.launch {
+            try {
+                _categories.value = chuckNorrisRepository.getCategory()
+            } catch (e: Exception) {
+                Log.e("Error", e.message)
+            }
+        }
+    }
 }

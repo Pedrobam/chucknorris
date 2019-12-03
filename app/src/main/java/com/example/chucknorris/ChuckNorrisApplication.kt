@@ -12,7 +12,7 @@ class ChuckNorrisApplication : Application() {
 		startKoin {
 			androidLogger()
 			androidContext(this@ChuckNorrisApplication)
-			modules(networkModule)
+			modules(listOf(networkModule, viewModelModule))
 		}
 	}
 }

@@ -4,6 +4,6 @@ import retrofit2.http.GET
 
 interface ChuckNorrisApi {
 
-	@GET("/jokes/categories")
-	fun getCategories(): List<String>
+    @GET("/jokes/categories")
+    suspend fun getCategories(): List<String>
 }
