@@ -1,7 +1,8 @@
-package com.example.chucknorris
+package com.example.chucknorris.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.chucknorris.R
 
 class MainActivity : AppCompatActivity() {
 

@@ -9,5 +9,17 @@
 		android:id="@+id/mainFragment"
 		android:name="com.example.chucknorris.ui.main.MainFragment"
 		android:label="main_fragment"
-		tools:layout="@layout/main_fragment" />
+		tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.chucknorris.ui.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
 </navigation>
